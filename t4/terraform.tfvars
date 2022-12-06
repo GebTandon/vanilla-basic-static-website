@@ -1,0 +1,5 @@
+location        = "eastus"
+rg-name         = "rg-stc-web"
+client_secret   = "override in t4 cloud"
+tenant_id       = "override from t4 cloud"
+subscription_id = "override from t4 cloud"
