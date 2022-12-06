@@ -9,11 +9,19 @@ This repo is used as a starter for a _very basic_ HTML web application using no 
 
 
  # Terraform
+ - [Configure for Azure](https://registry.terraform.io/providers/hashicorp/azurerm/2.35.0/docs/guides/service_principal_client_secret#configuring-the-service-principal-in-terraform )
  - [T4-Cloud Adoption Framework (templates)](https://github.com/aztfmod/terraform-azurerm-caf )
  - prepare Az account as here - https://stackoverflow.com/questions/72681536/azure-cli-path-error-running-in-terraform-cloud
 - [locals](https://spacelift.io/blog/terraform-locals )
  - use terraform login to login to t4 and get t4 login token. Set this token at global level
- - [follow](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret#creating-a-service-principal-using-the-azure-cli ) to set correct azure context and create an SP that allows T4 to create all resources in AZ.
+ - [follow](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret#creating-a-service-principal-using-the-azure-cli ) to set correct azure context and create an SP that allows T4 to create all 
+ resources in AZ. or follow commands below:
+ ```shell
+ $> az login
+ $> az account list
+ $> az account set --subscription="0a29e980-4c21-4962-95d2-2bf201b2e927"
+ ```
+    
 - [debugging](https://www.jorgebernhardt.com/terraform-troubleshooting-logging/ )
 
 ```shell
@@ -24,3 +32,17 @@ $> TF_LOG=TRACE terraform apply
 $> TF_LOG=TRACE terraform destroy
 
 ```
+
+- [importing existing resources](https://marcelzehner.ch/2020/07/04/how-to-bring-existing-azure-resources-under-terraform-management/ ) can be done.
+    note, that since this command runs locally on the machine importing resources, the remote variable values do not work (especially secrets)
+    so we do need to provide those values in a *.auto.tfvars, and do not checkin this file after import is over.
+    - Terraform import can only import resources into the state. It does not generate configuration.
+    - hence after import, its necessary to run plan and apply to sync the .tf files
+```shell
+# sample command run to import/sync updates to the webapp was as follows 
+$> t4 import azurerm_linux_web_app.webapp "/subscriptions/0a29e980-4c21-4962-95d2-2bf201b2e927/resourceGroups/rg-stc-web/providers/Microsoft.Web/sites/stc-webapp-6634av"
+```
+
+## Issues ##
+### With Azure ###
+- [WSL](https://github.com/microsoft/WSL/issues/8022 )

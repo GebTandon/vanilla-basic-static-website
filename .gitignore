@@ -297,3 +297,4 @@ dist
 !.nvmrc
 !.phpcs.xml.dist
 !t4/terraform.tfvars
+!.github/workflows/

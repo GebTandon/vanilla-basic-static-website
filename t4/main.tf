@@ -72,7 +72,7 @@ resource "azurerm_linux_web_app" "webapp" {
   site_config {
     use_32_bit_worker = true
     always_on         = false
-
+    app_command_line  = "node index.js"
     # # always_on         = true
     # default_documents = ["index.html"]
 
