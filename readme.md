@@ -7,6 +7,8 @@ This repo is used as a starter for a _very basic_ HTML web application using no 
  - [app service](https://www.cloudiqtech.com/deploy-a-web-app-in-azure-app-service-using-terraform/ )
  - [example w/ terraform](https://medium.com/bb-tutorials-and-thoughts/how-to-create-a-static-website-on-azure-with-terraform-9971e55e2884 )^^not useful^^
 
+#GitOps#
+- [Setup GitOps w/ Azure](https://github.com/Azure/login#configure-a-service-principal-with-a-secret )
 
  # Terraform
  - [Configure for Azure](https://registry.terraform.io/providers/hashicorp/azurerm/2.35.0/docs/guides/service_principal_client_secret#configuring-the-service-principal-in-terraform )
