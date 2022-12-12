@@ -10,6 +10,6 @@ output "webapp_id" {
 
 output "webapp_url" {
   description = "url of the web app created"
-  value = "https://${azurerm_linux_web_app.webapp.name}.azurewebsites.net"
+  value       = "https://${azurerm_linux_web_app.webapp.name}.azurewebsites.net"
   # value       = azurerm_linux_web_app.webapp.url
 }

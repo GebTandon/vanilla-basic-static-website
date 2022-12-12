@@ -38,6 +38,15 @@ $> TF_LOG=TRACE terraform destroy
     so we do need to provide those values in a *.auto.tfvars, and do not checkin this file after import is over.
     - Terraform import can only import resources into the state. It does not generate configuration.
     - hence after import, its necessary to run plan and apply to sync the .tf files
+    - [video](https://www.youtube.com/watch?v=VNBi-HhVX_Q )
+    - How to do import (Its a very critical operation, and things may go wrong at times.)
+        - to minimize impact, import least amount of resources in a go.
+        - communicate before starting import with team members
+        - cut CI/CD pipeline temporarily, so resources are not changed while import happens
+            -  from TF remote state, disable auto update & remove reference to pipeline/config mgt tool
+    - Run the plan command and update the terraform tf files manually so that the resources are not replaced, only updated. (in fact try to get to point where it does not want to change anything, that will make sure code is in sync with actual resource).
+    - THIS IS LABOUR INTENSIVE PROCESS DO NOT ATTEMPT IF NOT NEEDED!!
+    
 ```shell
 # sample command run to import/sync updates to the webapp was as follows 
 $> t4 import azurerm_linux_web_app.webapp "/subscriptions/0a29e980-4c21-4962-95d2-2bf201b2e927/resourceGroups/rg-stc-web/providers/Microsoft.Web/sites/stc-webapp-6634av"
